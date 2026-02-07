@@ -24,13 +24,65 @@ body {
   overflow-x: hidden;
 }
 
-/* 🌸 FLOWERS — FRONT MOST */
+/* ✉️ ENVELOPE INTRO */
+#intro {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #fff, var(--soft-pink));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.envelope {
+  width: 260px;
+  height: 180px;
+  background: white;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+  cursor: pointer;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #eee, #fff);
+  clip-path: polygon(0 0, 100% 0, 50% 60%);
+}
+
+.envelope span {
+  position: absolute;
+  bottom: -45px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+#intro.hide {
+  animation: fadeOut 1.2s ease forwards;
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* 🌸 FLOWERS (FRONT MOST) */
 .petal {
   position: fixed;
   top: -60px;
-  z-index: 9999; /* ALWAYS ABOVE CARD */
-  opacity: 0.85;
+  z-index: 9999;
   pointer-events: none;
+  opacity: 0.85;
   animation: fall linear;
 }
 
@@ -56,13 +108,17 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* HERO */
+/* MAIN CONTENT */
 .hero {
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
+  display: none;
   align-items: center;
+  justify-content: center;
   padding: 40px 20px;
+}
+
+.hero.show {
+  display: flex;
 }
 
 .card {
@@ -74,8 +130,6 @@ body {
   text-align: center;
   box-shadow: 0 40px 90px rgba(0,0,0,0.18);
   animation: fadeIn 2s ease;
-  position: relative;
-  z-index: 5;
 }
 
 @keyframes fadeIn {
@@ -95,7 +149,7 @@ body {
   color: var(--gold);
 }
 
-/* ✨ NAMES WITH SHIMMER */
+/* ✨ NAMES */
 .names {
   margin: 35px 0;
 }
@@ -103,8 +157,6 @@ body {
 .bride, .groom {
   font-family: 'Playfair Display', serif;
   font-size: clamp(32px, 4vw, 46px);
-  font-weight: 500;
-  letter-spacing: 1px;
   animation: shimmer 3s infinite alternate;
 }
 
@@ -120,25 +172,18 @@ body {
   margin: 10px 0;
 }
 
-/* 📸 PHOTO PLACEHOLDER */
+/* 📸 PHOTO */
 .photo-box {
   width: 230px;
   height: 300px;
   margin: 30px auto;
   border-radius: 20px;
   background: linear-gradient(135deg, #eee, #ddd);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
   color: #888;
-  animation: photoReveal 2.3s ease forwards;
-}
-
-@keyframes photoReveal {
-  from { opacity: 0; transform: scale(0.85); }
-  to { opacity: 1; transform: scale(1); }
+  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
 }
 
 /* ⏳ COUNTDOWN */
@@ -152,8 +197,8 @@ body {
 
 .time-box {
   background: white;
-  border-radius: 14px;
   padding: 12px 16px;
+  border-radius: 14px;
   min-width: 80px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
@@ -166,36 +211,31 @@ body {
 
 .time-box small {
   font-size: 11px;
-  line-height: 1.2;
-}
-
-.details {
-  font-size: 16px;
-  line-height: 1.8;
 }
 
 .map-container {
   margin-top: 30px;
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
 }
 
-iframe {
-  width: 100%;
-  height: 300px;
-  border: 0;
-}
+iframe { width: 100%; height: 300px; border: 0; }
 
 footer {
   margin-top: 30px;
   font-size: 14px;
-  opacity: 0.85;
 }
 </style>
 </head>
 
 <body>
+
+<!-- ✉️ INTRO -->
+<div id="intro">
+  <div class="envelope" id="openInvite">
+    <span>TAP TO OPEN</span>
+  </div>
+</div>
 
 <!-- 🎵 MUSIC -->
 <audio id="bgMusic" loop>
@@ -203,7 +243,7 @@ footer {
 </audio>
 <div class="music-btn" id="musicBtn">🎵</div>
 
-<section class="hero">
+<section class="hero" id="main">
   <div class="card">
     <div class="subtitle">YOU ARE CORDIALLY INVITED</div>
     <h1 class="title">Wedding Celebration</h1>
@@ -214,31 +254,30 @@ footer {
       <div class="groom">Madhav Adhikari</div>
     </div>
 
-    <div class="photo-box">
-      Couple Photo Coming Soon
-    </div>
+    <div class="photo-box">Couple Photo Coming Soon</div>
 
     <div class="countdown" id="countdown"></div>
-
-    <div class="details">
-      With the blessings of our families,<br>
-      we joyfully invite you to celebrate<br>
-      the beginning of our forever.<br><br>
-      <strong>१२ फागुन २०८२, मंगलवार</strong><br>
-      February 24, 2026
-    </div>
 
     <div class="map-container">
       <iframe src="https://www.google.com/maps?q=Modern+Party+Venue+Pvt.+Ltd.&output=embed"></iframe>
     </div>
 
-    <footer>
-      We look forward to your presence and blessings 💕
-    </footer>
+    <footer>We look forward to your presence and blessings 💕</footer>
   </div>
 </section>
 
 <script>
+/* ✉️ OPEN INVITE */
+const intro = document.getElementById("intro");
+const main = document.getElementById("main");
+const music = document.getElementById("bgMusic");
+
+document.getElementById("openInvite").onclick = () => {
+  intro.classList.add("hide");
+  main.classList.add("show");
+  music.play();
+};
+
 /* 🌸 FLOWERS */
 const flowers = ["🌸","🌺","💮","🌷","🌼"];
 setInterval(() => {
@@ -253,17 +292,15 @@ setInterval(() => {
 }, 220);
 
 /* 🎵 MUSIC TOGGLE */
-const music = document.getElementById("bgMusic");
 const btn = document.getElementById("musicBtn");
-let playing = false;
-
+let playing = true;
 btn.onclick = () => {
   playing ? music.pause() : music.play();
   playing = !playing;
   btn.textContent = playing ? "🔊" : "🎵";
 };
 
-/* ⏳ COUNTDOWN — 24 FEB 2026 */
+/* ⏳ COUNTDOWN */
 const weddingDate = new Date("2026-02-24T10:00:00").getTime();
 const cd = document.getElementById("countdown");
 
@@ -276,16 +313,11 @@ setInterval(() => {
     return;
   }
 
-  const d = Math.floor(diff / (1000*60*60*24));
-  const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-  const m = Math.floor((diff % (1000*60*60)) / (1000*60));
-  const s = Math.floor((diff % (1000*60)) / 1000);
-
   cd.innerHTML = `
-    <div class="time-box"><span>${d}</span><small>Days<br>दिन</small></div>
-    <div class="time-box"><span>${h}</span><small>Hours<br>घण्टा</small></div>
-    <div class="time-box"><span>${m}</span><small>Minutes<br>मिनेट</small></div>
-    <div class="time-box"><span>${s}</span><small>Seconds<br>सेकेन्ड</small></div>
+    <div class="time-box"><span>${Math.floor(diff/86400000)}</span><small>Days<br>दिन</small></div>
+    <div class="time-box"><span>${Math.floor(diff/3600000)%24}</span><small>Hours<br>घण्टा</small></div>
+    <div class="time-box"><span>${Math.floor(diff/60000)%60}</span><small>Minutes<br>मिनेट</small></div>
+    <div class="time-box"><span>${Math.floor(diff/1000)%60}</span><small>Seconds<br>सेकेन्ड</small></div>
   `;
 }, 1000);
 </script>

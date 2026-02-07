@@ -3,7 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Invitation | Swikriti & Madhav</title>
+
+<title>Wedding Invitation | Swikriti Aryal & Madhav Adhikari</title>
+
+<!-- 🔗 SOCIAL MEDIA PREVIEW (WhatsApp / Messenger / Instagram / Facebook) -->
+<meta property="og:title" content="Wedding Invitation | Swikriti Aryal & Madhav Adhikari">
+<meta property="og:description" content="We joyfully invite you to celebrate our wedding on February 24, 2026 💍 Tap to open the invitation.">
+<meta property="og:image" content="https://samman2571.github.io/SwikritiWedsMadhav/preview.png">
+<meta property="og:url" content="https://samman2571.github.io/SwikritiWedsMadhav/">
+<meta property="og:type" content="website">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Wedding Invitation | Swikriti & Madhav">
+<meta name="twitter:description" content="Join us in celebrating love and togetherness 💖">
+<meta name="twitter:image" content="https://samman2571.github.io/SwikritiWedsMadhav/preview.png">
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
@@ -38,7 +53,6 @@ body {
 .envelope {
   width: 300px;
   height: 250px;
-  position: relative;
   border-radius: 16px;
   background: linear-gradient(135deg, #fffaf3, #f6e9d6);
   box-shadow:
@@ -46,6 +60,7 @@ body {
     inset 0 0 0 2px rgba(201,164,76,0.45);
   cursor: pointer;
   animation: float 3s ease-in-out infinite;
+  position: relative;
 }
 
 @keyframes float {
@@ -53,18 +68,15 @@ body {
   50% { transform: translateY(-8px); }
 }
 
-/* Envelope flap */
 .envelope::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, #fff5e6, #f2d9b3);
   clip-path: polygon(0 0, 100% 0, 50% 60%);
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-radius: 16px 16px 0 0;
 }
 
-/* Golden text */
 .envelope-text {
   position: absolute;
   inset: 0;
@@ -72,35 +84,32 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 20px;
   font-family: 'Playfair Display', serif;
   font-size: 17px;
-  letter-spacing: 1px;
   color: var(--gold);
-  text-shadow: 0 0 8px rgba(201,164,76,0.5);
-  animation: textGlow 2.5s ease-in-out infinite alternate;
+  text-shadow: 0 0 10px rgba(201,164,76,0.6);
+  animation: glow 2.5s ease-in-out infinite alternate;
 }
 
-@keyframes textGlow {
+@keyframes glow {
   from { text-shadow: 0 0 6px rgba(201,164,76,0.4); }
-  to { text-shadow: 0 0 14px rgba(201,164,76,0.7); }
+  to { text-shadow: 0 0 16px rgba(201,164,76,0.8); }
 }
 
 #intro.hide {
-  animation: fadeOut 1.2s ease forwards;
+  animation: fadeOut 1.2s forwards;
 }
 
 @keyframes fadeOut {
   to { opacity: 0; visibility: hidden; }
 }
 
-/* 🌸 FLOWERS (FRONT MOST) */
+/* 🌸 FLOWERS */
 .petal {
   position: fixed;
   top: -60px;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.85;
   animation: fall linear;
 }
 
@@ -108,7 +117,7 @@ body {
   to { transform: translateY(110vh) rotate(360deg); }
 }
 
-/* 🎵 MUSIC BUTTON */
+/* 🎵 MUSIC */
 .music-btn {
   position: fixed;
   bottom: 20px;
@@ -138,34 +147,29 @@ body {
 .hero.show { display: flex; }
 
 .card {
-  background: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.93);
   border-radius: 30px;
   padding: 55px 45px;
   max-width: 860px;
   width: 100%;
   text-align: center;
   box-shadow: 0 40px 90px rgba(0,0,0,0.18);
-  animation: fadeIn 2s ease;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
+/* TITLES */
 .subtitle {
   letter-spacing: 4px;
   font-size: 13px;
-  margin-bottom: 20px;
 }
 
 .title {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(46px, 6vw, 80px);
   color: var(--gold);
+  margin: 15px 0;
 }
 
-/* ✨ NAMES */
+/* NAMES */
 .names {
   margin: 35px 0;
 }
@@ -178,37 +182,23 @@ body {
 
 @keyframes shimmer {
   from { text-shadow: 0 0 6px rgba(201,164,76,0.3); }
-  to { text-shadow: 0 0 20px rgba(201,164,76,0.7); }
+  to { text-shadow: 0 0 22px rgba(201,164,76,0.8); }
 }
 
 .ampersand {
   font-family: 'Great Vibes', cursive;
   font-size: 46px;
   color: var(--gold);
-  margin: 10px 0;
 }
 
-/* 📸 PHOTO */
+/* PHOTO */
 .photo-box {
   width: 280px;
   height: 360px;
   margin: 35px auto;
   border-radius: 24px;
   overflow: hidden;
-  background: #eee;
   box-shadow: 0 25px 55px rgba(0,0,0,0.28);
-  animation: photoReveal 1.6s ease forwards;
-}
-
-@keyframes photoReveal {
-  from {
-    opacity: 0;
-    transform: scale(0.9) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
 }
 
 .photo-box img {
@@ -217,13 +207,12 @@ body {
   object-fit: cover;
 }
 
-/* ⏳ COUNTDOWN */
+/* COUNTDOWN */
 .countdown {
   display: flex;
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
-  margin: 30px 0;
 }
 
 .time-box {
@@ -238,10 +227,6 @@ body {
   font-size: 22px;
   font-weight: 600;
   color: var(--gold);
-}
-
-.time-box small {
-  font-size: 11px;
 }
 
 .map-container {
@@ -261,7 +246,6 @@ footer {
 
 <body>
 
-<!-- ✉️ INTRO -->
 <div id="intro">
   <div class="envelope" id="openInvite">
     <div class="envelope-text">
@@ -270,7 +254,6 @@ footer {
   </div>
 </div>
 
-<!-- 🎵 MUSIC -->
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -302,7 +285,6 @@ footer {
 </section>
 
 <script>
-/* ✉️ OPEN INVITE */
 const intro = document.getElementById("intro");
 const main = document.getElementById("main");
 const music = document.getElementById("bgMusic");
@@ -313,7 +295,6 @@ document.getElementById("openInvite").onclick = () => {
   music.play();
 };
 
-/* 🌸 FLOWERS (reduced frequency) */
 const flowers = ["🌸","🌺","💮","🌷","🌼"];
 setInterval(() => {
   const p = document.createElement("div");
@@ -326,33 +307,27 @@ setInterval(() => {
   setTimeout(() => p.remove(), 12000);
 }, 320);
 
-/* 🎵 MUSIC TOGGLE */
 const btn = document.getElementById("musicBtn");
 let playing = true;
 btn.onclick = () => {
   playing ? music.pause() : music.play();
   playing = !playing;
-  btn.textContent = playing ? "🔊" : "🎵";
 };
 
-/* ⏳ COUNTDOWN */
 const weddingDate = new Date("2026-02-24T10:00:00").getTime();
 const cd = document.getElementById("countdown");
 
 setInterval(() => {
-  const now = Date.now();
-  const diff = weddingDate - now;
-
+  const diff = weddingDate - Date.now();
   if (diff <= 0) {
     cd.innerHTML = "<strong>🎉 Today is the Wedding Day! 🎉<br>आज विवाहको दिन हो!</strong>";
     return;
   }
-
   cd.innerHTML = `
-    <div class="time-box"><span>${Math.floor(diff/86400000)}</span><small>Days<br>दिन</small></div>
-    <div class="time-box"><span>${Math.floor(diff/3600000)%24}</span><small>Hours<br>घण्टा</small></div>
-    <div class="time-box"><span>${Math.floor(diff/60000)%60}</span><small>Minutes<br>मिनेट</small></div>
-    <div class="time-box"><span>${Math.floor(diff/1000)%60}</span><small>Seconds<br>सेकेन्ड</small></div>
+    <div class="time-box"><span>${Math.floor(diff/86400000)}</span><br>Days</div>
+    <div class="time-box"><span>${Math.floor(diff/3600000)%24}</span><br>Hours</div>
+    <div class="time-box"><span>${Math.floor(diff/60000)%60}</span><br>Minutes</div>
+    <div class="time-box"><span>${Math.floor(diff/1000)%60}</span><br>Seconds</div>
   `;
 }, 1000);
 </script>

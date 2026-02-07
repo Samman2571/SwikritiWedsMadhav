@@ -6,11 +6,11 @@
   <title>Wedding Invitation | Swikriti & Madhav</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --gold: #d4af37;
+      --gold: #c9a44c;
       --soft-pink: #f9e6ee;
       --dark: #2c2c2c;
     }
@@ -28,14 +28,15 @@
       overflow-x: hidden;
     }
 
-    /* Floating petals */
+    /* Floating flowers */
     .petal {
       position: fixed;
-      top: -50px;
-      font-size: 20px;
-      opacity: 0.7;
-      animation: fall linear infinite;
+      top: -60px;
+      opacity: 0.75;
+      animation-name: fall;
+      animation-timing-function: linear;
       pointer-events: none;
+      z-index: 1;
     }
 
     @keyframes fall {
@@ -49,55 +50,77 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
       padding: 40px 20px;
+      position: relative;
+      z-index: 2;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 24px;
-      padding: 50px 40px;
-      max-width: 800px;
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 26px;
+      padding: 55px 45px;
+      max-width: 820px;
       width: 100%;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-      animation: fadeIn 2s ease;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      animation: fadeIn 1.8s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    .subtitle {
+      letter-spacing: 4px;
+      font-size: 13px;
+      margin-bottom: 20px;
     }
 
     .title {
       font-family: 'Great Vibes', cursive;
-      font-size: clamp(42px, 6vw, 72px);
+      font-size: clamp(44px, 6vw, 76px);
       color: var(--gold);
       margin-bottom: 10px;
     }
 
-    .subtitle {
-      letter-spacing: 3px;
-      font-size: 14px;
-      margin-bottom: 25px;
-    }
-
     .names {
-      font-size: clamp(28px, 4vw, 40px);
-      font-weight: 500;
-      margin: 25px 0;
+      margin: 30px 0;
+      animation: nameReveal 2.5s ease forwards;
+      opacity: 0;
     }
 
-    .divider {
-      width: 80px;
+    @keyframes nameReveal {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bride,
+    .groom {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4vw, 42px);
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .ampersand {
+      font-family: 'Great Vibes', cursive;
+      font-size: 42px;
+      color: var(--gold);
+      margin: 10px 0;
+    }
+
+    .gold-line {
+      width: 120px;
       height: 2px;
-      background: var(--gold);
-      margin: 20px auto;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 25px auto;
     }
 
     .details {
       font-size: 16px;
       line-height: 1.8;
-      margin-top: 20px;
+      margin-top: 15px;
     }
 
     .venue {
@@ -107,9 +130,9 @@
 
     .map-container {
       margin-top: 30px;
-      border-radius: 16px;
+      border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     }
 
     iframe {
@@ -126,7 +149,7 @@
 
     @media (max-width: 600px) {
       .card {
-        padding: 35px 25px;
+        padding: 38px 26px;
       }
     }
   </style>
@@ -134,18 +157,19 @@
 
 <body>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="card">
       <div class="subtitle">YOU ARE CORDIALLY INVITED</div>
 
       <h1 class="title">Wedding Celebration</h1>
 
-      <div class="divider"></div>
-
       <div class="names">
-        Swikriti Aryal <br /> & <br /> Madhav Adhikari
+        <div class="bride">Swikriti Aryal</div>
+        <div class="ampersand">&</div>
+        <div class="groom">Madhav Adhikari</div>
       </div>
+
+      <div class="gold-line"></div>
 
       <div class="details">
         With the blessings of our families, <br />
@@ -160,8 +184,7 @@
       <div class="map-container">
         <iframe
           src="https://www.google.com/maps?q=Modern+Party+Venue+Pvt.+Ltd.&output=embed"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
+          loading="lazy">
         </iframe>
       </div>
 
@@ -171,19 +194,25 @@
     </div>
   </section>
 
-  <!-- Floating petals script -->
   <script>
-    const petals = ["🌸", "🌺", "💮", "🌷"];
+    const flowers = ["🌸", "🌺", "💮", "🌷", "🌼"];
 
-    for (let i = 0; i < 25; i++) {
+    function createPetal() {
       const petal = document.createElement("div");
       petal.className = "petal";
-      petal.innerText = petals[Math.floor(Math.random() * petals.length)];
+      petal.innerText = flowers[Math.floor(Math.random() * flowers.length)];
       petal.style.left = Math.random() * 100 + "vw";
-      petal.style.animationDuration = 8 + Math.random() * 8 + "s";
-      petal.style.fontSize = 14 + Math.random() * 20 + "px";
+      petal.style.fontSize = 14 + Math.random() * 22 + "px";
+      petal.style.animationDuration = 6 + Math.random() * 6 + "s";
       document.body.appendChild(petal);
+
+      setTimeout(() => {
+        petal.remove();
+      }, 12000);
     }
+
+    // more frequent petals ✨
+    setInterval(createPetal, 300);
   </script>
 
 </body>

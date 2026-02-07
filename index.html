@@ -74,7 +74,7 @@ body {
   text-align: center;
   padding: 20px;
   font-family: 'Playfair Display', serif;
-  font-size: 16px;
+  font-size: 17px;
   letter-spacing: 1px;
   color: var(--gold);
   text-shadow: 0 0 8px rgba(201,164,76,0.5);
@@ -94,7 +94,7 @@ body {
   to { opacity: 0; visibility: hidden; }
 }
 
-/* 🌸 FLOWERS — FRONT MOST */
+/* 🌸 FLOWERS (FRONT MOST) */
 .petal {
   position: fixed;
   top: -60px;
@@ -190,16 +190,31 @@ body {
 
 /* 📸 PHOTO */
 .photo-box {
-  width: 230px;
-  height: 300px;
-  margin: 30px auto;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #eee, #ddd);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+  width: 280px;
+  height: 360px;
+  margin: 35px auto;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #eee;
+  box-shadow: 0 25px 55px rgba(0,0,0,0.28);
+  animation: photoReveal 1.6s ease forwards;
+}
+
+@keyframes photoReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ⏳ COUNTDOWN */
@@ -250,7 +265,7 @@ footer {
 <div id="intro">
   <div class="envelope" id="openInvite">
     <div class="envelope-text">
-      Please open<br>the wedding card 🤵💝👰
+      Please open<br>the wedding card 💍
     </div>
   </div>
 </div>
@@ -272,7 +287,9 @@ footer {
       <div class="groom">Madhav Adhikari</div>
     </div>
 
-    <div class="photo-box">Couple Photo Coming Soon</div>
+    <div class="photo-box">
+      <img src="image777.jpeg" alt="Couple Photo">
+    </div>
 
     <div class="countdown" id="countdown"></div>
 
@@ -296,7 +313,7 @@ document.getElementById("openInvite").onclick = () => {
   music.play();
 };
 
-/* 🌸 FLOWERS (slightly reduced frequency) */
+/* 🌸 FLOWERS (reduced frequency) */
 const flowers = ["🌸","🌺","💮","🌷","🌼"];
 setInterval(() => {
   const p = document.createElement("div");

@@ -34,57 +34,37 @@ body {
   justify-content: center;
   z-index: 10000;
 }
-/* ✉️ ENVELOPE */
+
 .envelope {
-  width: 350px;
-  height: 230px;
+  width: 300px;
+  height: 250px;
   position: relative;
   border-radius: 16px;
-  background-color: #C21807; /* solid red base */
-  border: 4px solid #FFD700; /* golden border */
-  box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+  background: linear-gradient(135deg, #fffaf3, #f6e9d6);
+  box-shadow:
+    0 30px 70px rgba(0,0,0,0.25),
+    inset 0 0 0 2px rgba(201,164,76,0.45);
   cursor: pointer;
   animation: float 3s ease-in-out infinite;
-  overflow: hidden;
 }
 
-/* Floating animation */
 @keyframes float {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
 
-/* Envelope flap with golden border */
+/* Envelope flap */
 .envelope::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60%;
-  background-color: #C21807; /* red flap */
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  border-top: 4px solid #FFD700;  /* golden top border */
-  border-left: 4px solid #FFD700; /* golden side borders */
-  border-right: 4px solid #FFD700;
-  box-sizing: border-box;
-  z-index: 3; /* above golden pattern */
-}
-
-/* Golden shine patterns on top of red body */
-.envelope::after {
-  content: "";
-  position: absolute;
   inset: 0;
-  z-index: 2; /* above red base, below flap */
-  background:
-    radial-gradient(circle at 20% 25%, rgba(255, 215, 0, 0.25), transparent 35%),
-    radial-gradient(circle at 75% 60%, rgba(255, 215, 0, 0.2), transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.15), transparent 50%);
-  pointer-events: none;
+  background: linear-gradient(135deg, #fff5e6, #f2d9b3);
+  clip-path: polygon(0 0, 100% 0, 50% 60%);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
-/* Golden text inside envelope */
+/* Golden text */
 .envelope-text {
   position: absolute;
   inset: 0;
@@ -94,22 +74,17 @@ body {
   text-align: center;
   padding: 20px;
   font-family: 'Playfair Display', serif;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 1px;
-  color: #FFD700; /* golden text */
-  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+  color: var(--gold);
+  text-shadow: 0 0 8px rgba(201,164,76,0.5);
   animation: textGlow 2.5s ease-in-out infinite alternate;
 }
 
-/* Text glow animation */
 @keyframes textGlow {
-  0% { text-shadow: 0 0 4px rgba(255, 215, 0, 0.4); }
-  50% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.8); }
-  100% { text-shadow: 0 0 4px rgba(255, 215, 0, 0.4); }
+  from { text-shadow: 0 0 6px rgba(201,164,76,0.4); }
+  to { text-shadow: 0 0 14px rgba(201,164,76,0.7); }
 }
-
-
-
 
 #intro.hide {
   animation: fadeOut 1.2s ease forwards;
@@ -275,7 +250,7 @@ footer {
 <div id="intro">
   <div class="envelope" id="openInvite">
     <div class="envelope-text">
-      Please open<br>the wedding card 🤵👰
+      Please open<br>the wedding card 🤵👰🧧
     </div>
   </div>
 </div>

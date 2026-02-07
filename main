@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation | Swikriti & Madhav</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #d4af37;
+      --soft-pink: #f9e6ee;
+      --dark: #2c2c2c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #fff, var(--soft-pink));
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* Floating petals */
+    .petal {
+      position: fixed;
+      top: -50px;
+      font-size: 20px;
+      opacity: 0.7;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 24px;
+      padding: 50px 40px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(42px, 6vw, 72px);
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      letter-spacing: 3px;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .names {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 500;
+      margin: 25px 0;
+    }
+
+    .divider {
+      width: 80px;
+      height: 2px;
+      background: var(--gold);
+      margin: 20px auto;
+    }
+
+    .details {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-top: 20px;
+    }
+
+    .venue {
+      margin-top: 30px;
+      font-weight: 500;
+    }
+
+    .map-container {
+      margin-top: 30px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+    }
+
+    footer {
+      margin-top: 35px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 35px 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="card">
+      <div class="subtitle">YOU ARE CORDIALLY INVITED</div>
+
+      <h1 class="title">Wedding Celebration</h1>
+
+      <div class="divider"></div>
+
+      <div class="names">
+        Swikriti Aryal <br /> & <br /> Madhav Adhikari
+      </div>
+
+      <div class="details">
+        With the blessings of our families, <br />
+        we joyfully invite you to celebrate <br />
+        the beginning of our forever.
+      </div>
+
+      <div class="venue">
+        📍 Modern Party Venue Pvt. Ltd.
+      </div>
+
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps?q=Modern+Party+Venue+Pvt.+Ltd.&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <footer>
+        We look forward to your presence and blessings 💕
+      </footer>
+    </div>
+  </section>
+
+  <!-- Floating petals script -->
+  <script>
+    const petals = ["🌸", "🌺", "💮", "🌷"];
+
+    for (let i = 0; i < 25; i++) {
+      const petal = document.createElement("div");
+      petal.className = "petal";
+      petal.innerText = petals[Math.floor(Math.random() * petals.length)];
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.animationDuration = 8 + Math.random() * 8 + "s";
+      petal.style.fontSize = 14 + Math.random() * 20 + "px";
+      document.body.appendChild(petal);
+    }
+  </script>
+
+</body>
+</html>

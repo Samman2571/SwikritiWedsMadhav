@@ -36,34 +36,37 @@ body {
 }
 
 .envelope {
-  width: 350px;              /* bigger width */
-  height: 230px;             /* bigger height */
+  width: 350px;              
+  height: 230px;             
   position: relative;
   border-radius: 16px;
   background-color: #C21807; /* solid red */
   border: 4px solid #FFD700; /* golden border */
-  box-shadow: 0 30px 70px rgba(0,0,0,0.25); /* subtle shadow */
+  box-shadow: 0 30px 70px rgba(0,0,0,0.25); 
   cursor: pointer;
   animation: float 3s ease-in-out infinite;
+  overflow: hidden; /* ensures flap shine stays inside */
 }
 
+/* Floating animation */
 @keyframes float {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
 
-/* Envelope flap */
+/* Envelope flap with golden highlights */
 .envelope::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #fff5e6, #f2d9b3);
+  background: linear-gradient(135deg, #B22222 0%, #C21807 70%, #FFD700 100%);
   clip-path: polygon(0 0, 100% 0, 50% 60%);
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+  opacity: 0.85;
 }
 
-/* Golden text */
+/* Golden text inside envelope */
 .envelope-text {
   position: absolute;
   inset: 0;
@@ -73,17 +76,20 @@ body {
   text-align: center;
   padding: 20px;
   font-family: 'Playfair Display', serif;
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 1px;
-  color: var(--gold);
-  text-shadow: 0 0 8px rgba(201,164,76,0.5);
+  color: #FFD700; /* warm gold color */
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
   animation: textGlow 2.5s ease-in-out infinite alternate;
 }
 
+/* Text glow animation */
 @keyframes textGlow {
-  from { text-shadow: 0 0 6px rgba(201,164,76,0.4); }
-  to { text-shadow: 0 0 14px rgba(201,164,76,0.7); }
+  0% { text-shadow: 0 0 4px rgba(255, 215, 0, 0.4); }
+  50% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.8); }
+  100% { text-shadow: 0 0 4px rgba(255, 215, 0, 0.4); }
 }
+
 
 #intro.hide {
   animation: fadeOut 1.2s ease forwards;
